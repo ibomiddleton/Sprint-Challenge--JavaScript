@@ -5,43 +5,53 @@
 /* == Step 1: Base Constructor ==
   Create a constructor function named CuboidMaker that accepts properties for length, width, and height
 */
-function CuboidMaker(length, width, height) {
+function CuboidMaker(length = 4, width = 5, height = 5) {
   this.length = length;
   this.width = width;
   this.height = height;
 }
+
 
 /* == Step 2: Volume Method ==
   Create a method using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   
   Formula for cuboid volume: length * width * height
 */
-// function Cylinder(cyl_height, cyl_diameter) {
-//   this.cyl_height = cyl_height;
-//   this.cyl_diameter = cyl_diameter;
 
-
-CuboidMaker.prototype.Volume = function () {
-  return  length * width * height
+CuboidMaker.prototype.volume = function () {
+  return  this.length * this.width * this.height
 };
-var cubMkr = new CuboidMaker(5,4,3);
-
-console.log('volume =', cubMkr.Volume());
+var cuboid = new CuboidMaker(4,5,5);
 
 /* == Step 3: Surface Area Method ==
   Create another method using CuboidMaker's prototype that returns the surface area of a given cuboid's length, width, and height. 
 
   Formula for cuboid surface area of a cube: 2 * (length * width + length * height + width * height)
 */
-
+CuboidMaker.prototype.surfaceArea = function () {
+  var surf = this.length * this.width + this.length * this.height + this.width * this.height
+  return 2 * surf;
+};
+var cuboid = new CuboidMaker(4,5,5);
 
 /* == Step 4: Create a new object that uses CuboidMaker ==
   Create a cuboid object that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid.   
 */
+// function Cuboid(newCuboid) {
+//   CuboidMaker.call(this, newCuboid );
+//   this.isCuboid = newCuboid.isCuboid
+// }
+// Cuboid.prototype = Object.create(CuboidMaker.prototype);
+
+var Cuboid = new CuboidMaker();
+
+console.log('volume =', Cuboid.volume());
+console.log('Surface Area =', Cuboid.surfaceArea());
+
 
 // Test your volume and surfaceArea methods by uncommenting the logs below:
-// console.log(cuboid.volume()); // 100
-// console.log(cuboid.surfaceArea()); // 130
+console.log(cuboid.volume()); // 100
+console.log(cuboid.surfaceArea()); // 130
 
 
